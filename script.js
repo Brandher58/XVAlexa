@@ -38,6 +38,30 @@ const photos = [
   "Highlights/IMG_4545.jpeg",
 ];
 
+// ───── ENCUADRE VERTICAL DE CADA FOTO ─────
+// ¿Una foto sale recortada en el carrusel? Ajusta su número aquí.
+//   0   = mostrar la parte de ARRIBA de la foto
+//   50  = mostrar el CENTRO (valor por defecto)
+//   100 = mostrar la parte de ABAJO
+// Solo cambia el número de la foto que quieras. Las que no estén aquí
+// usan 50 (centro) automáticamente.
+const photoFraming = {
+  "Highlights/IMG_4529.jpeg": 45,
+  "Highlights/IMG_4530.jpeg": 30,
+  "Highlights/IMG_4533.jpeg": 50,
+  "Highlights/IMG_4534.jpeg": 50,
+  "Highlights/IMG_4535.jpeg": 50,
+  "Highlights/IMG_4536.jpeg": 70,
+  "Highlights/IMG_4537.jpeg": 50,
+  "Highlights/IMG_4538.jpeg": 50,
+  "Highlights/IMG_4540.jpeg": 50,
+  "Highlights/IMG_4541.jpeg": 50,
+  "Highlights/IMG_4542.jpeg": 50,
+  "Highlights/IMG_4543.jpeg": 50,
+  "Highlights/IMG_4544.jpeg": 50,
+  "Highlights/IMG_4545.jpeg": 50,
+};
+
 /* ─────────────────────────────────────────────
    2. CUENTA REGRESIVA
    ───────────────────────────────────────────── */
@@ -99,6 +123,9 @@ const photos = [
     img.src = src;
     img.alt = "Recuerdo de Alexa Yuliana " + (i + 1);
     img.loading = i === 0 ? "eager" : "lazy";
+    // Aplica el encuadre vertical definido en photoFraming (50 = centro por defecto)
+    const framing = photoFraming[src] != null ? photoFraming[src] : 50;
+    img.style.objectPosition = "center " + framing + "%";
     slide.appendChild(img);
     track.appendChild(slide);
 
