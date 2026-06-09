@@ -24,8 +24,6 @@ const WHATSAPP_MESSAGE =
 const photos = [
   "Highlights/IMG_4529.jpeg",
   "Highlights/IMG_4530.jpeg",
-  "Highlights/IMG_4531.jpeg",
-  "Highlights/IMG_4532.jpeg",
   "Highlights/IMG_4533.jpeg",
   "Highlights/IMG_4534.jpeg",
   "Highlights/IMG_4535.jpeg",
