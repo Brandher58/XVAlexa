@@ -7,8 +7,8 @@
    1. CONFIGURACIÓN — edita fácilmente aquí
    ───────────────────────────────────────────── */
 
-// Fecha del evento: 22 de julio de 2026, 6:00 PM (hora local).
-const EVENT_DATE = new Date(2026, 6, 22, 18, 0, 0); // mes 6 = julio
+// Fecha del evento: 17 de julio de 2026, 8:00 PM (hora local).
+const EVENT_DATE = new Date(2026, 6, 17, 20, 0, 0); // mes 6 = julio
 
 // Número de WhatsApp (formato internacional, sin "+", espacios ni guiones).
 // Ejemplo México: 52 + 10 dígitos.
@@ -16,26 +16,15 @@ const WHATSAPP_NUMBER = "526862403401";
 
 // Mensaje que se enviará por WhatsApp al confirmar.
 const WHATSAPP_MESSAGE =
-  "Hola, confirmo mi asistencia a los XV años de Alexa Yuliana Hernández Cirerol.";
+  "Hola, confirmo mi asistencia a los XV años de Alexa Yuliana.";
 
 // Fotografías de la galería.
 // Para sustituirlas, basta con cambiar las rutas o reemplazar los archivos
 // dentro de la carpeta /Highlights/ conservando los mismos nombres.
 const photos = [
-  "Highlights/IMG_4529.JPG",
-  "Highlights/IMG_4530.JPG",
-  "Highlights/IMG_4533.JPG",
-  "Highlights/IMG_4534.JPG",
-  "Highlights/IMG_4535.JPG",
-  "Highlights/IMG_4536.JPG",
-  "Highlights/IMG_4537.JPG",
-  "Highlights/IMG_4538.JPG",
-  "Highlights/IMG_4540.JPG",
-  "Highlights/IMG_4541.JPG",
-  "Highlights/IMG_4542.JPG",
-  "Highlights/IMG_4543.JPG",
-  "Highlights/IMG_4544.JPG",
-  "Highlights/IMG_4545.JPG",
+  "Highlights/IMG_4535.jpeg",
+  "Highlights/IMG_4541.jpeg",
+  "Highlights/IMG_4544.jpeg",
 ];
 
 // ───── ENCUADRE VERTICAL DE CADA FOTO ─────
@@ -46,20 +35,9 @@ const photos = [
 // Solo cambia el número de la foto que quieras. Las que no estén aquí
 // usan 50 (centro) automáticamente.
 const photoFraming = {
-  "Highlights/IMG_4529.JPG": 45,
-  "Highlights/IMG_4530.JPG": 30,
-  "Highlights/IMG_4533.JPG": 50,
-  "Highlights/IMG_4534.JPG": 50,
-  "Highlights/IMG_4535.JPG": 50,
-  "Highlights/IMG_4536.JPG": 70,
-  "Highlights/IMG_4537.JPG": 50,
-  "Highlights/IMG_4538.JPG": 50,
-  "Highlights/IMG_4540.JPG": 50,
-  "Highlights/IMG_4541.JPG": 50,
-  "Highlights/IMG_4542.JPG": 50,
-  "Highlights/IMG_4543.JPG": 50,
-  "Highlights/IMG_4544.JPG": 50,
-  "Highlights/IMG_4545.JPG": 50,
+  "Highlights/IMG_4535.jpeg": 50,
+  "Highlights/IMG_4541.jpeg": 50,
+  "Highlights/IMG_4544.jpeg": 25,
 };
 
 /* ─────────────────────────────────────────────

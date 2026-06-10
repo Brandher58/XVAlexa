@@ -99,8 +99,19 @@ a { color: inherit; text-decoration: none; }
   text-align: center;
   padding: 2rem 1.5rem;
   background:
-    url("Highlights/IMG_4533.JPG") center 28% / cover no-repeat fixed;
+    url("Highlights/IMG_4536.JPG") center 50% / cover no-repeat fixed;
   overflow: hidden;
+}
+
+.hero__crown {
+  width: clamp(64px, 16vw, 100px);
+  margin: 0 auto 0.7rem;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.45));
+}
+.hero__crown .crown-svg {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .hero__overlay {
