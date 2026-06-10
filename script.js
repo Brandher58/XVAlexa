@@ -228,13 +228,21 @@ const photoFraming = {
   // Respetar la preferencia de movimiento reducido
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-  const glyphs = ["✿", "❀", "✦", "❁"];
+
+
+  const glyphs = ["🌺", "🌸", "🍍"];
   const COUNT = 14;
 
   for (let i = 0; i < COUNT; i++) {
     const petal = document.createElement("span");
     petal.className = "petal";
-    petal.textContent = glyphs[i % glyphs.length];
+    const glyph = glyphs[i % glyphs.length];
+    if (glyph.charAt(0) === "<") {
+      petal.classList.add("petal--leaf");
+      petal.innerHTML = glyph;
+    } else {
+      petal.textContent = glyph;
+    }
 
     const size = 0.7 + Math.random() * 1.1;       // rem
     const duration = 9 + Math.random() * 9;        // s
