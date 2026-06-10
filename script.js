@@ -22,20 +22,20 @@ const WHATSAPP_MESSAGE =
 // Para sustituirlas, basta con cambiar las rutas o reemplazar los archivos
 // dentro de la carpeta /Highlights/ conservando los mismos nombres.
 const photos = [
-  "Highlights/IMG_4529.jpeg",
-  "Highlights/IMG_4530.jpeg",
-  "Highlights/IMG_4533.jpeg",
-  "Highlights/IMG_4534.jpeg",
-  "Highlights/IMG_4535.jpeg",
-  "Highlights/IMG_4536.jpeg",
-  "Highlights/IMG_4537.jpeg",
-  "Highlights/IMG_4538.jpeg",
-  "Highlights/IMG_4540.jpeg",
-  "Highlights/IMG_4541.jpeg",
-  "Highlights/IMG_4542.jpeg",
-  "Highlights/IMG_4543.jpeg",
-  "Highlights/IMG_4544.jpeg",
-  "Highlights/IMG_4545.jpeg",
+  "Highlights/IMG_4529.JPG",
+  "Highlights/IMG_4530.JPG",
+  "Highlights/IMG_4533.JPG",
+  "Highlights/IMG_4534.JPG",
+  "Highlights/IMG_4535.JPG",
+  "Highlights/IMG_4536.JPG",
+  "Highlights/IMG_4537.JPG",
+  "Highlights/IMG_4538.JPG",
+  "Highlights/IMG_4540.JPG",
+  "Highlights/IMG_4541.JPG",
+  "Highlights/IMG_4542.JPG",
+  "Highlights/IMG_4543.JPG",
+  "Highlights/IMG_4544.JPG",
+  "Highlights/IMG_4545.JPG",
 ];
 
 // ───── ENCUADRE VERTICAL DE CADA FOTO ─────
@@ -46,20 +46,20 @@ const photos = [
 // Solo cambia el número de la foto que quieras. Las que no estén aquí
 // usan 50 (centro) automáticamente.
 const photoFraming = {
-  "Highlights/IMG_4529.jpeg": 45,
-  "Highlights/IMG_4530.jpeg": 30,
-  "Highlights/IMG_4533.jpeg": 50,
-  "Highlights/IMG_4534.jpeg": 50,
-  "Highlights/IMG_4535.jpeg": 50,
-  "Highlights/IMG_4536.jpeg": 70,
-  "Highlights/IMG_4537.jpeg": 50,
-  "Highlights/IMG_4538.jpeg": 50,
-  "Highlights/IMG_4540.jpeg": 50,
-  "Highlights/IMG_4541.jpeg": 50,
-  "Highlights/IMG_4542.jpeg": 50,
-  "Highlights/IMG_4543.jpeg": 50,
-  "Highlights/IMG_4544.jpeg": 50,
-  "Highlights/IMG_4545.jpeg": 50,
+  "Highlights/IMG_4529.JPG": 45,
+  "Highlights/IMG_4530.JPG": 30,
+  "Highlights/IMG_4533.JPG": 50,
+  "Highlights/IMG_4534.JPG": 50,
+  "Highlights/IMG_4535.JPG": 50,
+  "Highlights/IMG_4536.JPG": 70,
+  "Highlights/IMG_4537.JPG": 50,
+  "Highlights/IMG_4538.JPG": 50,
+  "Highlights/IMG_4540.JPG": 50,
+  "Highlights/IMG_4541.JPG": 50,
+  "Highlights/IMG_4542.JPG": 50,
+  "Highlights/IMG_4543.JPG": 50,
+  "Highlights/IMG_4544.JPG": 50,
+  "Highlights/IMG_4545.JPG": 50,
 };
 
 /* ─────────────────────────────────────────────

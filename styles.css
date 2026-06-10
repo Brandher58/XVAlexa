@@ -99,7 +99,7 @@ a { color: inherit; text-decoration: none; }
   text-align: center;
   padding: 2rem 1.5rem;
   background:
-    url("Highlights/IMG_4533.jpeg") center 28% / cover no-repeat fixed;
+    url("Highlights/IMG_4533.JPG") center 28% / cover no-repeat fixed;
   overflow: hidden;
 }
 
@@ -521,7 +521,7 @@ a { color: inherit; text-decoration: none; }
   padding: clamp(4.5rem, 10vw, 8rem) 1.5rem;
   background:
     linear-gradient(150deg, rgba(74,63,58,0.78), rgba(74,63,58,0.6)),
-    url("Highlights/IMG_4541.jpeg") center / cover no-repeat;
+    url("Highlights/IMG_4541.JPG") center / cover no-repeat;
 }
 .rsvp__inner { max-width: 640px; margin: 0 auto; }
 .rsvp__title {
