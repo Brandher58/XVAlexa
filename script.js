@@ -15,8 +15,11 @@ const EVENT_DATE = new Date(2026, 6, 17, 20, 0, 0); // mes 6 = julio
 const WHATSAPP_NUMBER = "526862403401";
 
 // Mensaje que se enviará por WhatsApp al confirmar.
+// Los campos quedan en blanco para que el invitado los complete antes de enviar.
 const WHATSAPP_MESSAGE =
-  "Hola, confirmo mi asistencia a los XV años de Alexa Yuliana.";
+  "¡Hola! Confirmo mi asistencia a los XV años de Alexa Yuliana 🌺\n\n" +
+  "Nombre(s): \n" +
+  "Número de personas: ";
 
 // Fotografías de la galería.
 // Para sustituirlas, basta con cambiar las rutas o reemplazar los archivos
@@ -188,6 +191,45 @@ const photoFraming = {
       "?text=" +
       encodeURIComponent(WHATSAPP_MESSAGE);
     window.open(url, "_blank", "noopener");
+  });
+})();
+
+/* ─────────────────────────────────────────────
+   4b. AGREGAR AL CALENDARIO (.ics)
+   ───────────────────────────────────────────── */
+(function initAddToCalendar() {
+  const btn = document.getElementById("addCalBtn");
+  if (!btn) return;
+
+  // Horas en UTC. Mexicali (America/Tijuana) en julio = PDT (UTC-7),
+  // por lo que 8:00 PM local = 03:00 UTC del día siguiente, y 1:00 AM = 08:00 UTC.
+  const ics = [
+    "BEGIN:VCALENDAR",
+    "VERSION:2.0",
+    "PRODID:-//XV Alexa Yuliana//ES",
+    "CALSCALE:GREGORIAN",
+    "BEGIN:VEVENT",
+    "UID:xv-alexa-yuliana-2026@invitacion",
+    "DTSTAMP:20260101T000000Z",
+    "DTSTART:20260718T030000Z",
+    "DTEND:20260718T080000Z",
+    "SUMMARY:XV Años de Alexa Yuliana",
+    "DESCRIPTION:¡Te esperamos! Vestimenta: traje de baño y hawaiana. Bienvenidas hieleras con tu bebida favorita (no vidrio).",
+    "LOCATION:Jardín Los Pinos\\, Calle Alvarado esq. Yucatán 1550\\, Col. Esperanza\\, Mexicali\\, B.C.",
+    "END:VEVENT",
+    "END:VCALENDAR",
+  ].join("\r\n");
+
+  btn.addEventListener("click", () => {
+    const blob = new Blob([ics], { type: "text/calendar;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "XV-Alexa-Yuliana.ics";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
   });
 })();
 
