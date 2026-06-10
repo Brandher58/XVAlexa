@@ -233,7 +233,7 @@ const photoFraming = {
 
 
 
-  const glyphs = ["🌺", "🌸", "🍍"];
+  const glyphs = ["🌺", "🌸"];
   const COUNT = 14;
 
   for (let i = 0; i < COUNT; i++) {
