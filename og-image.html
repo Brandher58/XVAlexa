@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<!--
+  Plantilla SOLO para generar la imagen de previsualización (og:image) a 1200x630.
+  No es parte del sitio público. Se captura con Edge headless -> Highlights/og-preview.jpg
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap"
+  rel="stylesheet"
+/>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --white: #fffdfb;
+    --gold-light: #e7d3a6;
+    --font-script: "Great Vibes", cursive;
+    --font-serif: "Cormorant Garamond", serif;
+    --font-sans: "Montserrat", sans-serif;
+  }
+  html, body { width: 1200px; height: 630px; overflow: hidden; }
+  .hero {
+    position: relative;
+    width: 1200px;
+    height: 630px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: url("Highlights/IMG_4536.JPG") center 50% / cover no-repeat;
+  }
+  .hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(50,40,36,0.55) 0%, rgba(50,40,36,0.42) 40%, rgba(50,40,36,0.78) 100%);
+  }
+  .hero__content {
+    position: relative;
+    z-index: 2;
+    color: var(--white);
+    max-width: 820px;
+    padding: 40px 56px;
+    border-radius: 26px;
+    background: radial-gradient(120% 110% at 50% 45%, rgba(40,30,28,0.55) 0%, rgba(40,30,28,0.32) 55%, transparent 100%);
+  }
+  .hero__crown {
+    width: 84px;
+    margin: 0 auto 10px;
+    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.45));
+  }
+  .hero__crown svg { display: block; width: 100%; height: auto; }
+  .hero__eyebrow {
+    font-family: var(--font-sans);
+    font-size: 16px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    font-weight: 400;
+    color: var(--gold-light);
+    margin-bottom: 10px;
+    text-shadow: 0 2px 14px rgba(0,0,0,0.6);
+  }
+  .hero__script {
+    font-family: var(--font-script);
+    font-weight: 400;
+    font-size: 104px;
+    line-height: 1;
+    color: var(--gold-light);
+    text-shadow: 0 4px 28px rgba(0,0,0,0.7), 0 1px 3px rgba(0,0,0,0.5);
+    margin-bottom: 8px;
+  }
+  .hero__name {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    font-size: 58px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    line-height: 1.12;
+    text-shadow: 0 4px 24px rgba(0,0,0,0.75), 0 1px 3px rgba(0,0,0,0.6);
+  }
+  .hero__divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    color: var(--gold-light);
+    margin: 22px 0;
+    font-size: 18px;
+  }
+  .hero__divider span {
+    display: block;
+    width: 90px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-light), transparent);
+  }
+  .hero__date {
+    font-family: var(--font-serif);
+    font-size: 26px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--white);
+    text-shadow: 0 2px 16px rgba(0,0,0,0.7);
+  }
+</style>
+</head>
+<body>
+  <section class="hero">
+    <div class="hero__overlay"></div>
+    <div class="hero__content">
+      <div class="hero__crown" aria-hidden="true">
+        <svg viewBox="0 0 100 62" role="img" aria-label="Corona">
+          <defs>
+            <linearGradient id="silver" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#ffffff" />
+              <stop offset="0.42" stop-color="#d7dbe1" />
+              <stop offset="0.58" stop-color="#aab0ba" />
+              <stop offset="1" stop-color="#eef0f3" />
+            </linearGradient>
+          </defs>
+          <path d="M9 50 L7 17 L31 37 L50 7 L69 37 L93 17 L91 50 Z"
+                fill="url(#silver)" stroke="#8f96a1" stroke-width="1.4" stroke-linejoin="round" />
+          <rect x="9" y="49" width="82" height="8" rx="4"
+                fill="url(#silver)" stroke="#8f96a1" stroke-width="1.2" />
+          <circle cx="7" cy="15" r="4.5" fill="#ffffff" stroke="#8f96a1" stroke-width="1.2" />
+          <circle cx="50" cy="5" r="5" fill="#ffffff" stroke="#8f96a1" stroke-width="1.2" />
+          <circle cx="93" cy="15" r="4.5" fill="#ffffff" stroke="#8f96a1" stroke-width="1.2" />
+        </svg>
+      </div>
+      <p class="hero__eyebrow">Con todo mi cariño, te invito a celebrar</p>
+      <h2 class="hero__script">Mis XV Años</h2>
+      <h1 class="hero__name">Alexa Yuliana</h1>
+      <div class="hero__divider" aria-hidden="true"><span></span>✦<span></span></div>
+      <p class="hero__date">17 · Julio · 2026</p>
+    </div>
+  </section>
+</body>
+</html>
