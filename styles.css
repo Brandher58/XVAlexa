@@ -348,6 +348,10 @@ a { color: inherit; text-decoration: none; }
   font-weight: 600;
   line-height: 1.5;
 }
+/* separación extra entre el mensaje de Alexa y el agradecimiento */
+#agradecimiento {
+  margin: clamp(2.5rem, 6vw, 4.5rem) auto 0;
+}
 
 /* ════════════════════════════════════════════════════
    GALERÍA / CARRUSEL
