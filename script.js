@@ -15,10 +15,8 @@ const EVENT_DATE = new Date(2026, 6, 17, 20, 0, 0); // mes 6 = julio
 const WHATSAPP_NUMBER = "526862403401";
 
 // Mensaje que se enviará por WhatsApp al confirmar.
-// Los campos quedan en blanco para que el invitado los complete antes de enviar.
 const WHATSAPP_MESSAGE =
-  "¡Hola! Confirmo mi asistencia a los XV años de Alexa Yuliana 🌺\n\n" +
-  "Nombre(s): ";
+  "¡Hola! Confirmo mi asistencia a los XV años de Alexa Yuliana 🌺";
 
 // Fotografías de la galería.
 // Para sustituirlas, basta con cambiar las rutas o reemplazar los archivos
