@@ -18,8 +18,7 @@ const WHATSAPP_NUMBER = "526862403401";
 // Los campos quedan en blanco para que el invitado los complete antes de enviar.
 const WHATSAPP_MESSAGE =
   "¡Hola! Confirmo mi asistencia a los XV años de Alexa Yuliana 🌺\n\n" +
-  "Nombre(s): \n" +
-  "Número de personas: ";
+  "Nombre(s): ";
 
 // Fotografías de la galería.
 // Para sustituirlas, basta con cambiar las rutas o reemplazar los archivos
