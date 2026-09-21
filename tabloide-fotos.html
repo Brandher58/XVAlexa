@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tabloide · Fotos Alexa</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #e9e2da;
+      font-family: "Segoe UI", system-ui, sans-serif;
+      color: #4a3f3a;
+      padding: 24px 16px 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .toolbar {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .toolbar button {
+      font-size: 0.8rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #fff;
+      background: linear-gradient(135deg, #e7d3a6 0%, #c9a86a 45%, #a8853f 100%);
+      border: none;
+      padding: 12px 22px;
+      border-radius: 40px;
+      cursor: pointer;
+      box-shadow: 0 10px 24px -10px rgba(122,90,60,0.6);
+    }
+    .toolbar .hint {
+      width: 100%;
+      text-align: center;
+      font-size: 0.74rem;
+      color: #7c6f68;
+    }
+    .ctrl {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #fff;
+      padding: 8px 14px;
+      border-radius: 40px;
+      box-shadow: 0 8px 20px -12px rgba(122,90,60,0.5);
+    }
+    .ctrl span {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: #a8853f;
+      letter-spacing: 0.03em;
+    }
+    .ctrl small { font-size: 0.7rem; color: #7c6f68; width: 34px; text-align: right; }
+    .ctrl input[type=range] { width: 120px; accent-color: #c9a86a; }
+    .ctrl button {
+      border: 1px solid #d9c8b0;
+      background: #fbf6f0;
+      color: #a8853f;
+      border-radius: 20px;
+      padding: 5px 10px;
+      font-size: 0.7rem;
+      cursor: pointer;
+    }
+    .ctrl button:hover { background: #f3e8d8; }
+    .print {
+      font-size: 0.8rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #fff;
+      background: linear-gradient(135deg, #e7d3a6 0%, #c9a86a 45%, #a8853f 100%);
+      border: none;
+      padding: 12px 22px;
+      border-radius: 40px;
+      cursor: pointer;
+      box-shadow: 0 10px 24px -10px rgba(122,90,60,0.6);
+    }
+
+    /* Hoja tabloide HORIZONTAL: 17 x 11 in = 432 x 279 mm */
+    .sheet {
+      width: 432mm;
+      height: 279mm;
+      background: #fff;
+      padding: 3mm;
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      gap: 3mm;
+      box-shadow: 0 22px 60px -30px rgba(122,90,60,0.5);
+    }
+
+    /* Cada foto llena media hoja (recorte mínimo del blanco) */
+    .photo {
+      flex: 1;
+      height: 100%;
+      object-fit: cover;
+      box-shadow: 0 10px 26px -14px rgba(122,90,60,0.55);
+    }
+    .photo--ojo      { object-position: 50% 55%; }
+    .photo--sentada  { object-position: 50% 78%; }
+
+    @page { size: 17in 11in; margin: 0; }  /* Tabloide horizontal */
+    @media print {
+      body { background: #fff; padding: 0; }
+      .toolbar { display: none; }
+      .sheet { box-shadow: none; }
+      .photo { box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="toolbar">
+    <div class="ctrl">
+      <span>Foto 1 (ojo)</span>
+      <button onclick="nudge('ojo',-3)">▲ subir</button>
+      <input id="s-ojo" type="range" min="0" max="100" value="55"
+             oninput="setPos('ojo', this.value)" />
+      <button onclick="nudge('ojo',3)">▼ bajar</button>
+      <small id="v-ojo">55%</small>
+    </div>
+    <div class="ctrl">
+      <span>Foto 2 (sentada)</span>
+      <button onclick="nudge('sentada',-3)">▲ subir</button>
+      <input id="s-sentada" type="range" min="0" max="100" value="78"
+             oninput="setPos('sentada', this.value)" />
+      <button onclick="nudge('sentada',3)">▼ bajar</button>
+      <small id="v-sentada">78%</small>
+    </div>
+    <button class="print" onclick="window.print()">Imprimir / Guardar PDF</button>
+    <p class="hint">
+      Mueve cada foto con los deslizadores o los botones ▲▼. Al imprimir elige
+      <strong>Tabloide/Ledger (11×17")</strong>, <strong>Horizontal</strong>,
+      <strong>Márgenes: Ninguno</strong> y <strong>Gráficos de fondo</strong> activado.
+    </p>
+  </div>
+
+  <div class="sheet">
+    <img class="photo photo--ojo" id="img-ojo" src="Highlights/ojo.JPG" alt="Alexa — ojo" />
+    <img class="photo photo--sentada" id="img-sentada" src="Highlights/sentadararo.JPG" alt="Alexa — sentada" />
+  </div>
+
+  <script>
+    function setPos(key, val) {
+      val = Math.max(0, Math.min(100, parseFloat(val)));
+      document.getElementById('img-' + key).style.objectPosition = '50% ' + val + '%';
+      document.getElementById('s-' + key).value = val;
+      document.getElementById('v-' + key).textContent = val + '%';
+    }
+    function nudge(key, delta) {
+      const cur = parseFloat(document.getElementById('s-' + key).value);
+      setPos(key, cur + delta);
+    }
+    // aplica los valores iniciales
+    setPos('ojo', 55);
+    setPos('sentada', 78);
+  </script>
+
+</body>
+</html>

@@ -43,40 +43,8 @@ const photoFraming = {
 /* ─────────────────────────────────────────────
    2. CUENTA REGRESIVA
    ───────────────────────────────────────────── */
-(function initCountdown() {
-  const elDays = document.getElementById("cd-days");
-  const elHours = document.getElementById("cd-hours");
-  const elMins = document.getElementById("cd-mins");
-  const elSecs = document.getElementById("cd-secs");
-  const elDone = document.getElementById("cd-done");
-  const grid = document.querySelector(".countdown__grid");
-
-  const pad = (n) => String(n).padStart(2, "0");
-
-  function tick() {
-    const diff = EVENT_DATE.getTime() - Date.now();
-
-    if (diff <= 0) {
-      if (grid) grid.style.display = "none";
-      if (elDone) elDone.hidden = false;
-      clearInterval(timer);
-      return;
-    }
-
-    const days = Math.floor(diff / 86400000);
-    const hours = Math.floor((diff % 86400000) / 3600000);
-    const mins = Math.floor((diff % 3600000) / 60000);
-    const secs = Math.floor((diff % 60000) / 1000);
-
-    elDays.textContent = pad(days);
-    elHours.textContent = pad(hours);
-    elMins.textContent = pad(mins);
-    elSecs.textContent = pad(secs);
-  }
-
-  tick();
-  const timer = setInterval(tick, 1000);
-})();
+// (Contador regresivo eliminado: el evento ya transcurrió. La página ahora
+//  se mantiene como recuerdo del gran día.)
 
 /* ─────────────────────────────────────────────
    3. GALERÍA / CARRUSEL

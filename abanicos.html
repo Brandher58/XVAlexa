@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tarjetas para Abanicos · Alexa Yuliana</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    :root {
+      --white:      #fffdfb;
+      --cream:      #fbf6f0;
+      --blush:      #f6e6e4;
+      --rose:       #e9c4c0;
+      --rose-deep:  #d29a96;
+      --gold:       #c9a86a;
+      --gold-light: #e7d3a6;
+      --gold-deep:  #a8853f;
+      --ink:        #4a3f3a;
+      --ink-soft:   #7c6f68;
+      --font-script: "Great Vibes", cursive;
+      --font-serif:  "Cormorant Garamond", serif;
+      --font-sans:   "Montserrat", sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-sans);
+      color: var(--ink);
+      background: #e9e2da;
+      padding: 24px 16px 60px;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    /* ───── Barra de acciones (no se imprime) ───── */
+    .toolbar {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 22px;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+    }
+    .toolbar button {
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--white);
+      background: linear-gradient(135deg, #e7d3a6 0%, #c9a86a 45%, #a8853f 100%);
+      border: none;
+      padding: 12px 22px;
+      border-radius: 40px;
+      cursor: pointer;
+      box-shadow: 0 6px 16px rgba(168,133,63,0.28);
+    }
+    .toolbar label {
+      font-size: 0.8rem;
+      letter-spacing: 0.04em;
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .toolbar input {
+      width: 64px;
+      padding: 8px 10px;
+      border: 1px solid var(--rose);
+      border-radius: 10px;
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      text-align: center;
+    }
+    .hint {
+      flex-basis: 100%;
+      text-align: center;
+      font-size: 0.74rem;
+      color: var(--ink-soft);
+      line-height: 1.5;
+      max-width: 640px;
+      margin: 4px auto 0;
+    }
+
+    /* ───── Hoja ───── */
+    .sheet {
+      width: 267mm;             /* área útil Tabloide 11×17" con 6mm de margen */
+      margin: 0 auto;
+      background: #fff;
+      padding: 8mm 16mm;        /* margen extra arriba/abajo y a los lados */
+      box-shadow: 0 18px 50px rgba(0,0,0,0.12);
+      display: grid;
+      grid-template-columns: repeat(4, 50mm);
+      gap: 6mm 12mm;            /* separación entre tarjetas (fila · columna) */
+      justify-content: center;
+      align-content: start;
+    }
+
+    /* ───── Tarjeta 5 × 5 cm ───── */
+    .fan {
+      position: relative;
+      width: 50mm;
+      height: 50mm;
+      overflow: hidden;
+      border-radius: 4mm;
+      background:
+        radial-gradient(120% 120% at 50% 0%, #fffaf3 0%, #fdf1e2 48%, #faead4 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      page-break-inside: avoid;
+      outline: 1px dashed rgba(168,133,63,0.45);   /* guía de corte */
+      outline-offset: 0;
+    }
+
+    /* marco dorado interior */
+    .fan::after {
+      content: "";
+      position: absolute;
+      inset: 2.4mm;
+      border: 0.7px solid rgba(168,133,63,0.65);
+      border-radius: 2.6mm;
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    /* flores de fondo */
+    .bg-flower {
+      position: absolute;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .bg-flower.center {
+      width: 46mm;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0.22;
+    }
+    .bg-flower.tl {
+      width: 22mm;
+      top: -6mm;
+      left: -6mm;
+      transform: rotate(-18deg);
+      opacity: 0.9;
+    }
+    .bg-flower.br {
+      width: 26mm;
+      bottom: -7mm;
+      right: -7mm;
+      transform: rotate(150deg);
+      opacity: 0.9;
+    }
+
+    /* hojas tropicales */
+    .leaf {
+      position: absolute;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.55;
+    }
+    .leaf.l1 { width: 18mm; top: -3mm; right: 2mm; transform: rotate(35deg); }
+    .leaf.l2 { width: 16mm; bottom: -2mm; left: 1mm; transform: rotate(-150deg); }
+
+    /* contenido */
+    .content {
+      position: relative;
+      z-index: 2;
+      padding: 0 4mm;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .eyebrow {
+      font-family: var(--font-sans);
+      font-size: 6.5px;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--gold-deep);
+      margin-bottom: 1mm;
+    }
+
+    .script {
+      font-family: var(--font-script);
+      font-size: 21px;
+      line-height: 0.95;
+      color: #d2693f;            /* coral cálido / terracota */
+      margin-bottom: 0.4mm;
+    }
+
+    .name {
+      font-family: var(--font-serif);
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      line-height: 1.05;
+      color: #a9781a;            /* dorado intenso */
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin: 1.6mm 0;
+      color: var(--gold);
+    }
+    .divider span {
+      display: block;
+      width: 9mm;
+      height: 0.7px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+    .divider svg { width: 8px; height: 8px; }
+
+    .thanks {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 11px;
+      color: var(--ink-soft);
+      line-height: 1.2;
+      max-width: 40mm;
+    }
+
+    /* ───── Impresión ───── */
+    @page { size: 11in 17in; margin: 6mm; }   /* Tabloide vertical · margen 6 mm */
+    @media print {
+      body { background: #fff; padding: 0; }
+      .toolbar { display: none; }
+      .sheet { box-shadow: none; width: 267mm; padding: 8mm 16mm; gap: 6mm 12mm; margin: 0 auto; }
+      .fan { outline-color: rgba(168,133,63,0.55); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="toolbar">
+    <label>Tarjetas:
+      <input id="count" type="number" min="1" max="200" value="28" />
+    </label>
+    <label>Tono:
+      <select id="tone" style="padding:8px 10px;border:1px solid var(--rose);border-radius:10px;font-family:var(--font-sans);">
+        <option value="mixto" selected>Mixto (naranja y rosa)</option>
+        <option value="naranja">Flor naranja</option>
+        <option value="rosa">Flor rosa</option>
+      </select>
+    </label>
+    <button onclick="render()">Actualizar</button>
+    <button onclick="window.print()">Imprimir / Guardar PDF</button>
+    <p class="hint">
+      Tarjetas de <strong>5 × 5 cm</strong> para pegar sobre los abanicos de mano (28 por hoja Tabloide 11×17", con margen a los lados).
+      Al imprimir elige <strong>Tamaño: Tabloide/Ledger</strong>, <strong>Márgenes: Predeterminado</strong> y activa
+      <strong>Gráficos de fondo</strong>. Recorta por las líneas punteadas.
+    </p>
+  </div>
+
+  <div class="sheet" id="sheet"></div>
+
+  <!-- Plantilla de una tarjeta -->
+  <template id="fanTpl">
+    <div class="fan">
+      <!-- decoración floral (se inyecta por JS según el tono) -->
+      <div class="content">
+        <h2 class="script">Mis XV Años</h2>
+        <h1 class="name">Alexa Yuliana</h1>
+        <div class="divider">
+          <span></span>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c1.5 3 4.5 4.5 7.5 4.5C16.5 7.5 14 10 12 13 10 10 7.5 7.5 4.5 6.5 7.5 6.5 10.5 5 12 2Z"/></svg>
+          <span></span>
+        </div>
+        <p class="thanks">Gracias por<br/>acompañarme</p>
+      </div>
+    </div>
+  </template>
+
+  <script>
+    /* ── Generador de hibisco SVG (pétalos rotados 72°) ── */
+    function hibisco(palette) {
+      // palette: {petal, petalEdge, vein, center, dot}
+      const petal = `
+        <path d="M0 0 C -20 -12 -30 -38 -14 -52 C -2 -62 14 -56 15 -38 C 15.5 -22 9 -9 0 0 Z"
+              fill="${palette.petal}" stroke="${palette.petalEdge}" stroke-width="0.8"/>
+        <path d="M0 -2 C -7 -16 -9 -34 -5 -48" fill="none" stroke="${palette.vein}" stroke-width="1" opacity="0.55"/>
+        <path d="M-2 -6 C -12 -14 -18 -30 -16 -44" fill="none" stroke="${palette.vein}" stroke-width="0.7" opacity="0.35"/>`;
+      let petals = '';
+      for (let i = 0; i < 5; i++) {
+        petals += `<g transform="rotate(${i * 72})">${petal}</g>`;
+      }
+      // estambre central
+      const stamen = `
+        <line x1="0" y1="0" x2="0" y2="34" stroke="${palette.center}" stroke-width="1.6"/>
+        <g fill="${palette.dot}">
+          <circle cx="-3" cy="30" r="1.6"/><circle cx="3" cy="32" r="1.6"/>
+          <circle cx="0" cy="35" r="1.7"/><circle cx="-2" cy="34" r="1.5"/><circle cx="2" cy="28" r="1.5"/>
+        </g>
+        <circle cx="0" cy="0" r="6" fill="${palette.center}" opacity="0.85"/>`;
+      return `
+        <svg class="bg-flower" viewBox="0 0 100 100" aria-hidden="true">
+          <g transform="translate(50,46)">${petals}${stamen}</g>
+        </svg>`;
+    }
+
+    function hoja() {
+      return `
+        <svg class="leaf" viewBox="0 0 40 80" aria-hidden="true">
+          <path d="M20 2 C 36 22 36 58 20 78 C 4 58 4 22 20 2 Z" fill="#9cc4a0"/>
+          <path d="M20 4 L20 76" stroke="#6fa177" stroke-width="1.2"/>
+          <path d="M20 20 L33 28 M20 34 L33 42 M20 48 L33 56 M20 20 L7 28 M20 34 L7 42 M20 48 L7 56"
+                stroke="#6fa177" stroke-width="0.8" fill="none" opacity="0.7"/>
+        </svg>`;
+    }
+
+    const PALETAS = {
+      rosa: {
+        petal: '#f4a6b8', petalEdge: '#e07a96', vein: '#d4607f',
+        center: '#e9b84a', dot: '#c0392b'
+      },
+      naranja: {
+        petal: '#f9b066', petalEdge: '#ef8a3c', vein: '#e0701f',
+        center: '#e94f37', dot: '#b8341f'
+      }
+    };
+
+    function decorar(fan, tono, idx) {
+      // por defecto (mixto): una flor naranja y una rosa por tarjeta
+      let palTl = PALETAS.naranja, palBr = PALETAS.rosa, palCentro = PALETAS.naranja;
+      if (tono === 'rosa')    { palTl = palBr = palCentro = PALETAS.rosa; }
+      if (tono === 'naranja') { palTl = palBr = palCentro = PALETAS.naranja; }
+
+      const center = hibisco(palCentro); // grande y tenue
+      const tl     = hibisco(palTl);
+      const br     = hibisco(palBr);
+
+      const wrap = document.createElement('div');
+      wrap.innerHTML = center + tl + br + hoja() + hoja();
+      const [elCenter, elTl, elBr, elL1, elL2] = wrap.children;
+      elCenter.classList.add('center');
+      elTl.classList.add('tl');
+      elBr.classList.add('br');
+      elL1.classList.add('l1');
+      elL2.classList.add('l2');
+
+      // insertar antes del contenido
+      const content = fan.querySelector('.content');
+      [elCenter, elL1, elL2, elTl, elBr].forEach(el => fan.insertBefore(el, content));
+    }
+
+    function render() {
+      const sheet = document.getElementById('sheet');
+      const tpl   = document.getElementById('fanTpl');
+      const n     = Math.max(1, Math.min(120, parseInt(document.getElementById('count').value || '12', 10)));
+      const tono  = document.getElementById('tone').value;
+      sheet.innerHTML = '';
+      for (let i = 0; i < n; i++) {
+        const node = tpl.content.cloneNode(true);
+        const fan  = node.querySelector('.fan');
+        decorar(fan, tono, i);
+        sheet.appendChild(node);
+      }
+    }
+
+    document.getElementById('count').addEventListener('change', render);
+    document.getElementById('tone').addEventListener('change', render);
+    render();
+  </script>
+</body>
+</html>
